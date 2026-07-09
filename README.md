@@ -57,6 +57,7 @@ python main.py report --genres game work --week 2026-W28
 - `docs/roadmap.md`
 - `docs/architecture.md`
 - `docs/data-schema.md`
+- `docs/input-format.md`
 - `docs/source-catalog.md`
 - `docs/genre-taxonomy.md`
 - `docs/output-format.md`
