@@ -6,8 +6,9 @@ __pycache__/
 
 data/raw/**/*.csv
 data/processed/*.sqlite
-outputs/*
+outputs/**
 
+!outputs/
 !outputs/ai_input/
 !outputs/ai_input/.gitkeep
 !outputs/ai_results/
