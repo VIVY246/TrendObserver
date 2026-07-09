@@ -20,9 +20,38 @@
 }
 ```
 
-## AI 分析結果 JSONL
+## Item-level AI 分析結果 JSONL
 
-`outputs/ai_results/` に保存する。AI が返した分析結果も 1 行 1 JSON とし、後続の Markdown レポート生成で読み込める形にする。
+初期実装では、元データ 1 件ごとの AI 分析結果を取り込める必要がある。`outputs/ai_results/` に保存する AI 分析結果 JSONL は 1 行 1 JSON とし、各行の `id` を元の `NormalizedTrendItem.id` と対応させる。
+
+```json
+{
+  "id": "tiktok_sample_001",
+  "ai_genre": "ゲーム",
+  "sub_genre": "ゲーム実況",
+  "format_type": "あるある共感型",
+  "hook_type": "対象指定",
+  "emotion": "共感",
+  "target_audience": "ゲーム実況を見る10代〜20代",
+  "sound_usage": "ネタ音源",
+  "trend_reason": "共感コメントがつきやすい",
+  "reusable_template": "〇〇な人あるあるを3つ見せる",
+  "applicable_to": ["game", "service_promotion"],
+  "confidence": 0.78
+}
+```
+
+### Item-level 分析結果のルール
+
+- `id` は元の `NormalizedTrendItem.id` と対応する。
+- AI 分析結果 JSONL も 1 行 1 JSON とする。
+- レポート生成時は `id` をキーに元データと分析結果を紐づける。
+- `confidence` は 0.0〜1.0 の数値とする。
+- 欠損値を AI 側で推測して埋めない。
+
+## Weekly AI 分析結果 JSONL
+
+週次サマリーが必要な場合も、AI が返した分析結果は 1 行 1 JSON とし、後続の Markdown レポート生成で読み込める形にする。
 
 ```json
 {
@@ -40,7 +69,7 @@
 
 ## 入力 CSV
 
-TikTok CSV は出力形式ではなく入力形式として扱う。サンプル fixture は `tests/fixtures/tiktok_sample.csv` に置く。
+TikTok CSV は出力形式ではなく入力形式として扱う。仕様は `docs/input-format.md` に定義する。サンプル fixture は `tests/fixtures/tiktok_sample.csv` に置く。
 
 ## ファイル名
 
