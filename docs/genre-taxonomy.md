@@ -3,6 +3,10 @@
 ## 初期ジャンル
 
 - game
+- work
+
+## 将来候補
+
 - company
 - ai
 - entertainment
@@ -11,25 +15,20 @@
 
 ## ジャンル指定ルール
 
-- CLIでは `--genre game` のように指定する。
-- 複数指定は `--genre game --genre ai` のように同じオプションを複数回渡す。
-- sourceごとの検索語はこのファイルで管理する。
+- CLIでは `--genres game work` のように指定する想定とする。
+- sourceごとの検索語は `config/genres.yml` で管理する。
 - 実装ではジャンルIDを小文字の ASCII 文字列として扱う。
 
 ## 例
 
 ```yaml
-game:
-  keywords:
-    - ゲーム
-    - Steam
-    - 新作ゲーム
-    - セール
-
-ai:
-  keywords:
-    - AI
-    - 生成AI
-    - LLM
-    - 機械学習
+genres:
+  - id: game
+    name: Game
+    queries:
+      - game
+  - id: work
+    name: Work
+    queries:
+      - work
 ```

@@ -1,0 +1,10 @@
+# Initial genre settings for the TikTok CSV MVP.
+genres:
+  - id: game
+    name: Game
+    queries:
+      - game
+  - id: work
+    name: Work
+    queries:
+      - work

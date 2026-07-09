@@ -1,0 +1,16 @@
+.venv/
+__pycache__/
+*.pyc
+
+.env
+
+data/raw/**/*.csv
+data/processed/*.sqlite
+outputs/*
+
+!outputs/ai_input/
+!outputs/ai_input/.gitkeep
+!outputs/ai_results/
+!outputs/ai_results/.gitkeep
+!outputs/reports/
+!outputs/reports/.gitkeep

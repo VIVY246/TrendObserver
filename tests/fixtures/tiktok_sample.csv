@@ -1,0 +1,2 @@
+id,collected_at,genre_query,item_type,title,url,description,views,likes
+tiktok_sample_001,2026-07-08,game,video,Sample TikTok Trend,https://example.com/sample,Sample row for importer tests,1000,100

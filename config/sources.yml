@@ -1,0 +1,6 @@
+# Initial source settings for the TikTok CSV MVP.
+sources:
+  tiktok:
+    enabled: true
+    ingestion: manual_csv
+    raw_dir: data/raw/tiktok

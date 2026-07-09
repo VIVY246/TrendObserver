@@ -1,43 +1,53 @@
 # Output Format
 
-## JSONL
+## AI 分析用 JSONL
 
-1行1アイテムで出力する。各行は `NormalizedTrendItem` として解釈できる有効な JSON にする。
+`outputs/ai_input/` に出力する。1 行 1 アイテムで、各行は `NormalizedTrendItem` として解釈できる有効な JSON にする。
 
 ```json
 {
-  "source": "steam",
-  "source_item_id": "example",
-  "title": "Example Game",
-  "genre": "game",
-  "fetched_at": "2026-07-08T00:00:00Z",
-  "metrics": { "reviews": 1200 },
+  "id": "source_unique_id",
+  "source": "tiktok",
+  "collected_at": "2026-07-08",
+  "genre_query": "game",
+  "item_type": "video",
+  "title": "タイトルまたは名称",
+  "url": "https://example.com",
+  "description": "AI分析用の説明文",
+  "metrics": { "views": 1200 },
+  "source_specific": {},
   "raw": {}
 }
 ```
 
-## CSV
+## AI 分析結果 JSONL
 
-最低限の分析用カラムのみ出力する。
+`outputs/ai_results/` に保存する。AI が返した分析結果も 1 行 1 JSON とし、後続の Markdown レポート生成で読み込める形にする。
 
-| column         | description                    |
-| -------------- | ------------------------------ |
-| source         | 取得元                         |
-| source_item_id | 取得元でのID                   |
-| url            | 元投稿・ページURL              |
-| title          | タイトル                       |
-| author         | 投稿者・開発元等               |
-| published_at   | 投稿日時                       |
-| fetched_at     | 取得日時                       |
-| genre          | 指定ジャンル                   |
-| keywords       | `;` 区切りのキーワード         |
-| metrics_json   | metrics を JSON 文字列化した値 |
+```json
+{
+  "week": "2026-W28",
+  "genre": "game",
+  "summary": "今週の主要トレンド要約",
+  "topics": [],
+  "source_ids": ["source_unique_id"]
+}
+```
+
+## Markdown レポート
+
+`outputs/reports/` に出力する。人間が読める週次レポートとして、対象週、対象ジャンル、主要トピック、根拠となる source を含める。
+
+## 入力 CSV
+
+TikTok CSV は出力形式ではなく入力形式として扱う。サンプル fixture は `tests/fixtures/tiktok_sample.csv` に置く。
 
 ## ファイル名
 
 ```txt
-outputs/{date}/{source}-{genre}.jsonl
-outputs/{date}/{source}-{genre}.csv
+outputs/ai_input/{week}/{genre}.jsonl
+outputs/ai_results/{week}.jsonl
+outputs/reports/{week}.md
 ```
 
-`date` は実行日の `YYYY-MM-DD` とする。
+`week` は `2026-W28` のような ISO 週形式を想定する。

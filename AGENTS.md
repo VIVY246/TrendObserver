@@ -2,7 +2,11 @@
 
 ## Project overview
 
-このリポジトリは、SNS・Steam等から流行把握用データを取得し、AIが分析しやすい形式で出力する無料自作ツールです。
+このリポジトリは、流行把握用データをローカルで整理し、AIが分析しやすい形式で出力する無料自作ツールです。
+
+初期MVPは Python CLI です。最初の対象は TikTok Creative Center などで人が確認し、手動CSV化した TikTok トレンドデータの取り込みです。
+
+Steam / YouTube / Reddit などの自動取得や adapter 実装は初期MVPでは行いません。
 
 ## Important docs
 
@@ -20,8 +24,12 @@
 
 ## Development rules
 
-- 実装前に該当docsを確認する。
-- データ取得元ごとの差異はadapter層に閉じ込める。
-- AI分析用の正規化スキーマを壊さない。
+- 実装前に docs/requirements.md、docs/architecture.md、docs/data-schema.md を確認する。
+- データ取得元ごとの差異は importer / adapter 層に閉じ込める。
+- AI分析用の共通スキーマを壊さない。
+- `raw` と `source_specific` を保持する。
+- CSVやSQLiteなどの実データを不用意にコミットしない。
+- 初期MVPでは Python / SQLite / CSV / JSONL / Markdown / YAML の構成を前提にする。
+- TypeScript構成や package.json は、明示的な方針変更があるまで作らない。
 - 新しい取得元を追加する場合は source-catalog.md と data-schema.md を更新する。
 - 仕様変更が大きい場合は docs/adr/ に意思決定を残す。

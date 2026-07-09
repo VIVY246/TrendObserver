@@ -1,28 +1,36 @@
 # Roadmap
 
-## Phase 1: 基盤
+## Phase 1: TikTok CSV MVP
 
-- 要件と出力仕様を固定する。
-- `NormalizedTrendItem` を実装する。
-- JSONL writer を実装する。
-- CLI の基本形を作る。
+- Python CLI の土台作成
+- TikTok CSV 取り込み
+- 共通フォーマット正規化
+- SQLite 保存
+- AI 分析用 JSONL 出力
+- AI 分析結果 JSONL 取り込み
+- Markdown 週次レポート生成
 
-## Phase 2: 初期データソース
+## Phase 2: 入力と分析補助の拡張
 
-- Steam adapter を追加する。
-- YouTube adapter を追加する。
-- Reddit adapter を追加する。
-- サンプル fixture と unit test を追加する。
+- CSV 列名の揺れへの対応
+- ジャンル YAML の拡充
+- AI 分析用プロンプト例の整備
+- レポートテンプレートの改善
+- エラー表示とログの改善
 
-## Phase 3: 分析しやすさの改善
+## Phase 3: データソース拡張
 
-- CSV writer を追加する。
-- ジャンル別キーワードを拡充する。
-- AI分析用のサンプルプロンプトを整備する。
+- YouTube API 連携の検討
+- Steam 公開ページ・API 連携の検討
+- Google Trends 連携の検討
+- GitHub トレンド取得の検討
+- Reddit 連携の検討
 
 ## 後回し
 
 - Web UI
 - スケジューラー
-- DB保存
 - ダッシュボード
+- TikTok の完全自動取得
+- Instagram / X の自動取得
+- 課金機能
